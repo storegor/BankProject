@@ -7,3 +7,12 @@ class Bank:
         self.accounts_ = []
         self.client_info = {}
 
+    def check_reliability(self):
+        for values in self.client_info[self.current_client_]:
+            if len(values) <= 1:
+                return False
+        return True
+       
+    def cansel_transaction(self, amount, account):
+        self.current_account_.transfer(account, amount)
+
