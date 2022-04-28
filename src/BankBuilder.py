@@ -1,4 +1,4 @@
-from ClassBank import Bank
+from src.ClassBank import Bank
 
 
 class BankBuilder:

@@ -34,11 +34,9 @@ class DebitAccount(IAccount):
 
     def withdraw(self, value):
         if self.amount_ < value:
-            #ошибка нет денег
-            pass
+            raise Exception("You have no money!")
         if not self.bank_.check_reliability() and value > self.not_upper_:
-            #ошибка не надежный
-            pass
+            raise Exception("You are not reliable!")
         self.amount_ -= value
 
     def show_amount(self):

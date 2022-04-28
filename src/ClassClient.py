@@ -1,7 +1,7 @@
 class Client:
     def __init__(self):
-        self.id = None
-        self.name = None
-        self.current_account = None
-        self.current_bank = None
-        self.all_accounts = None
+        self.id_ = None
+        self.name_ = None
+        self.current_account_ = None
+        self.current_bank_ = None
+        self.all_accounts_ = []
