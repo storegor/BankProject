@@ -1,4 +1,13 @@
-from src.ClassClient import Client
+from ClassClient import Client
+from random import randint
+
+
+def create_id(admin):
+    client_id = randint(10 ** 9, 10 ** 10 - 1)
+    while client_id in admin.all_clients_id_:
+        client_id = randint(10 ** 9, 10 ** 10 - 1)
+    admin.all_clients_id_.append(client_id)
+    return client_id
 
 
 class ClientBuilder:
@@ -8,8 +17,8 @@ class ClientBuilder:
     def set_name(self, name):
         self.client.name_ = name
 
-    def set_id(self, id_arg):
-        self.client.id_ = id_arg
+    def set_id(self, admin):
+        self.client.id_ = create_id(admin)
 
     def set_current_account(self, account):
         self.client.current_account_ = account
