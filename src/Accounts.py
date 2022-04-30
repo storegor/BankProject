@@ -54,15 +54,12 @@ class CreditAccount(IAccount):
 
     def withdraw(self, value):
         if not self.bank_.check_reliability() and value > self.not_upper_:
-            # ошибка не надежный
-            pass
+            raise Exception("You are not reliable!")
         else:
             if self.amount_ > 0 and (self.amount_ + self.limit_ < value):
-                # ошибка нет денег
-                pass
+                raise Exception("You have no money!")
             if self.amount_ <= 0 and (self.limit_ + self.amount_ < value + value * self.commission_):
-                # ошибка нет денег
-                pass
+                raise Exception("You have no money!")
         self.amount_ -= value
 
     def transfer(self, other_account, value):
@@ -92,14 +89,11 @@ class DepositAccount(IAccount):
 
     def withdraw(self, value):
         if not self.is_expired():
-            #ошибка депозит не истек
-            pass
+            raise Exception("Deposit has not expired!")
         if self.amount_ + self.amount_ * self.percent_ < value:
-            #ошибка нет денег
-            pass
+            raise Exception("You have no money!")
         if not self.bank_.check_reliability() and value > self.not_upper_:
-            #ошибка не надежный
-            pass
+            raise Exception("You are not reliable!")
         if (self.amount_ - value) < 0:
             self.amount_ = self.amount_ + self.amount_ * self.percent_ - value
         else:
@@ -128,11 +122,9 @@ class ForeignAccount(IAccount):
 
     def withdraw(self, value):
         if value > self.amount_:
-            #ошибка нехватки денег
-            pass
+            raise Exception("You have no money!")
         if not self.bank_.check_reliability() and value > self.not_upper_:
-            #ошибка не надежный
-            pass
+            raise Exception("You are not reliable!")
         self.amount_ -= value
 
     def sell(self, value):
